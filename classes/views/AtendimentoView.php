@@ -1,22 +1,28 @@
 <?php
 
 
-class TratamentoView
+class AtendimentoView
 {
 
     function informacoes($dados)
     {
 
-        // $atendimentoController = new AtentimentoController();
-        // $atendimentoController->processarForMulario($dados);
+        $atendimentoController = new AtentimentoController();
+        $atendimentoController->processarForMulario($dados);
 
-        echo "bateu";
+        if ($atendimentoController == true) {
+            echo '<script>alert("savo com sucesso");</script>';
+            sleep(5);
+            header("Location: index.php");
+        }
+        
+        // var_dump($atendimentoController) ;
     }
 
-    function informacaoTratamento($nome)
+    function informacaoTratamento($id)
     {
         $animalController = new AnimalController();
-        $listaanimal = $animalController->BuscarPeloNome($nome);
+        $listaanimal = $animalController->BuscarPeloID($id);
 
         $tratamentoController = new TratamentoController();
         $listaTratamento = $tratamentoController->tratamentoIndex();
@@ -30,23 +36,24 @@ class TratamentoView
             <form method="POST" action="">
                 <div class="item-form">
                     <label>Nome do animal:</label>
-                    <input type="text" name="nome_animal" disabled value="' . $listaanimal[$i]->nome . '">
+                    <input type="text" name="nome_animal" readonly value="' . $listaanimal[$i]->nome . '">
+                    <input type="hidden" name="id_animal" value="' . $listaanimal[$i]->codigo . '">
                 </div>
 
                 <div class="item-form">
                     <label>Data:</label>
-                    <input type="date" name="data" value="' . date('Y-m-d') . '">
+                    <input type="date" name="data" value="' . date('Y-m-d') . ' required">
                 </div>
 
                 <div class="item-form">
                     <label>Tratamento:</label>
-                    <select>
-                        <option selected disabled>Selecione o Tratamento</option>';
+                    <select name="tratamento">
+                        <option selected disabled>Selecione o Tratamento</option> ';
                 
                 
                     // Exibe as opções de tratamento
                     foreach ($listaTratamento as $tratamento) {
-                        echo '<option value="' . $tratamento->codigo . ' data-descricao="' . $tratamento->descricao . '">' . $tratamento->nome . '</option>';
+                        echo '<option  value="' . $tratamento->codigo . '">' . $tratamento->nome . '</option>';
                     }
 
                 echo '
@@ -61,7 +68,7 @@ class TratamentoView
 
                 <div class="item-form-bloco">
                     <label>Descrição do Atendimento:</label>
-                    <textarea name="descricao_atendimento" rows="6"></textarea>
+                    <textarea name="descricao_atendimento" rows="6" required></textarea>
                 </div>
 
                  <button class="botao">Salvar</button>
@@ -69,6 +76,9 @@ class TratamentoView
             ';
         }
 
+        function hsitoricoAnimal($nome){
+            //terminar de fazer
+        }
         
     }
 }

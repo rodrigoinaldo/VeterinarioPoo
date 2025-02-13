@@ -19,7 +19,7 @@ class AnimalView{
             // nesse caso estou verificando se a imagem salva, se nao ouver ele vai colocar uma padrão, quem esta fazendo isso é o file_exists
             echo '
                 <div class="caixaAnimal">
-                    <a href="atendimento.php?nome='.$listaTodosAnimais[$i]->nome. '">
+                    <a href="atendimento.php?id='.$listaTodosAnimais[$i]->codigo. '">
                         <img src="'.(file_exists($caminho_completo) ? $caminho_completo : 'images/patas.png') .'"> 
                         
                         <div>
@@ -50,7 +50,7 @@ class AnimalView{
             // nesse caso estou verificando se a imagem salva, se nao ouver ele vai colocar uma padrão, quem esta fazendo isso é o file_exists
             echo '
                 <div class="caixaAnimal">
-                    <a href="atendimento.php?nome='.$listaanimal[$i]->nome. '">
+                    <a href="atendimento.php?id='.$listaanimal[$i]->codigo. '">
                         <img src="'.(file_exists($caminho_completo) ? $caminho_completo : 'images/patas.png') .'"> 
                         
                         <div>

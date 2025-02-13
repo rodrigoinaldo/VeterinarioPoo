@@ -2,11 +2,11 @@
     require_once 'config.php';
 
     //verificar se existe o parametro nome na url
-    if(isset($_GET['nome'])){
-        $nome = $_GET['nome'];
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
     }
 
-    $animalView = new TratamentoView();
+    $animalView = new AtendimentoView();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $animalView->informacoes($_POST);
@@ -34,8 +34,8 @@
         <h1>Registro de atendimento</h1>
             <?php
 
-            $animalView = new TratamentoView();
-            $animalView->informacaoTratamento($nome);
+            $animalView = new AtendimentoView();
+            $animalView->informacaoTratamento($id);
 
             ?>
        <!-- <form>
